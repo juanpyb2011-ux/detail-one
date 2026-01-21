@@ -445,6 +445,28 @@
 
   </div>
 </section>
+<section id="resenas" class="resenas">
+  <h2>⭐ Opiniones de Clientes</h2>
+  <p class="sub">Tu reseña es muy importante para Detail One</p>
+
+  <form onsubmit="enviarResena(event)">
+    <input type="text" id="nombreResena" placeholder="Tu nombre" required>
+    <textarea id="textoResena" placeholder="Escribe tu reseña aquí..." required></textarea>
+    <button type="submit">Enviar reseña</button>
+  </form>
+</section>
+
+<script>
+function enviarResena(e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombreResena").value;
+  const mensaje = document.getElementById("textoResena").value;
+
+  const texto = `Hola, soy ${nombre}. Quiero dejar esta reseña para Detail One:%0A%0A${mensaje}`;
+  window.open(`https://wa.me/522224290839?text=${texto}`, "_blank");
+}
+</script>
 
 <footer>
   <p>© 2026 <span>Detail One</span> · Detailing Automotriz Sport Luxury</p>
