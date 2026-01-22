@@ -1,495 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Detail%20One%22,%22short_name%22:%22DetailOne%22,%22description%22:%22Detailing%20automotriz%20Sport%20Luxury%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22,%22background_color%22:%22%230b0b0b%22,%22theme_color%22:%22%23c9a24d%22,%22orientation%22:%22portrait%22}">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detail One | Sport Luxury Detailing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-   body
-  .menu {
-  background-color: #000000;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail One | Sport Luxury Detailing</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0b0b0b;--dark:#141414;--gold:#c9a24d;--silver:#d6d6d6;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Montserrat',sans-serif;}
+body{background:var(--black);color:var(--silver);line-height:1.6;padding-top:70px;}
 
-  color: #ffffff;
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-}
+/* MENU */
+nav{position:fixed;top:0;left:0;width:100%;background:#000;display:flex;justify-content:center;gap:14px;padding:12px;z-index:999;border-bottom:1px solid var(--gold);}nav a{color:var(--gold);text-decoration:none;font-weight:600;padding:6px 14px;border:1px solid var(--gold);border-radius:20px;font-size:.85rem;}nav a:hover{background:var(--gold);color:#000;}nav a.club{background:var(--gold);color:#000;}
 
-    :root {
-      --black: #0b0b0b;
-      --dark: #141414;
-      --gold: #c9a24d;
-      --silver: #d6d6d6;
-      --accent: #1f6aff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-     {
-
-      background-color: var(--black);
-      color: var(--silver);
-      line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(135deg, #000, #1a1a1a);
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: white;
-      letter-spacing: 2px;
-    }
-
-    header h1 span {
-      color: var(--gold);
-    }
-
-    header p {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      color: #bfbfbf;
-    }
-
-    section {
-      padding: 70px 8%;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-title h2 {
-      font-size: 2.2rem;
-      color: white;
-      margin-bottom: 10px;
-    }
-
-    .section-title span {
-      color: var(--gold);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-    }
-
-    .packages {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, #151515, #0e0e0e);
-      border-radius: 18px;
-      padding: 30px;
-      border: 1px solid #222;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-      color: white;
-      margin-bottom: 8px;
-    }
-
-    .card .tag {
-      font-size: 0.75rem;
-      color: var(--gold);
-      margin-bottom: 15px;
-      display: block;
-    }
-
-    .card ul {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .card ul li {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      position: relative;
-      padding-left: 18px;
-    }
-
-    .card ul li::before {
-      content: '•';
-      color: var(--gold);
-      position: absolute;
-      left: 0;
-    }
-
-    .info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: #bdbdbd;
-    }
-
-    .price {
-      margin-top: 15px;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--gold);
-      text-align: right;
-    }
-
-    .featured {
-      border: 1px solid var(--gold);
-      box-shadow: 0 0 20px rgba(201,162,77,0.2);
-    }
-
-    footer {
-      background-color: #050505;
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #999;
-    }
-
-    footer span {
-      color: var(--gold);
-    }
-
-  
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: linear-gradient(135deg, #25D366, #1ebe5d);
-      color: white;
-      padding: 14px 22px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      z-index: 1000;
-    }
-
-    .whatsapp-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-    }
-
-  
-    .cta {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--gold), #f5d27a);
-      color: #0b0b0b;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-decoration: none;
-      text-align: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(201,162,77,0.4);
-    }
-
-  </style>
+header{background:linear-gradient(135deg,#000,#1a1a1a);padding:90px 20px;text-align:center;}header h1{font-size:3rem;color:white;letter-spacing:3px;}header h1 span{color:var(--gold);}header p{margin-top:12px;color:#bbb;}
+section{padding:70px 8%;}
+.section-title{text-align:center;margin-bottom:50px;} .section-title span{color:var(--gold);font-size:.85rem;letter-spacing:2px;} .section-title h2{font-size:2.2rem;color:white;margin-top:8px;}
+.packages,.productos,.planes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+.card,.plan{background:linear-gradient(180deg,#151515,#0e0e0e);border-radius:18px;padding:28px;border:1px solid #222;transition:.3s;} .card:hover,.plan:hover{transform:translateY(-6px);} .featured{border:1px solid var(--gold);box-shadow:0 0 18px rgba(201,162,77,.25);} 
+.card h3,.plan h3{color:white;margin-bottom:6px;} .tag{font-size:.75rem;color:var(--gold);margin-bottom:14px;display:block;}
+.card ul,.plan ul{list-style:none;margin-bottom:18px;} .card ul li,.plan ul li{font-size:.9rem;margin-bottom:8px;padding-left:16px;position:relative;} .card ul li::before,.plan ul li::before{content:'•';position:absolute;left:0;color:var(--gold);} 
+.price,.precio{font-size:1.4rem;font-weight:700;color:var(--gold);margin:10px 0;text-align:right;}
+.cta,.buy{display:block;text-align:center;padding:12px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f5d27a);color:#000;font-weight:700;text-decoration:none;}
+form{max-width:500px;margin:0 auto;}form input,form textarea{width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:none;}form button{width:100%;padding:12px;border:none;border-radius:10px;background:var(--gold);font-weight:700;}
+footer{text-align:center;padding:30px;color:#888;}
+</style>
 </head>
 <body>
 
+<nav>
+<a href="#servicios">Paquetes</a>
+<a href="#tienda">Tienda</a>
+<a href="#resenas">Reseñas</a>
+<a href="#club" class="club">Detail One Club</a>
+</nav>
+
 <header>
-  <h1>DETAIL <span>ONE</span></h1>
-  <p>El primer nivel del detailing · Estilo Sport Luxury</p>
+<h1>DETAIL <span>ONE</span></h1>
+<p>El primer nivel del detailing · Sport Luxury</p>
 </header>
 
-<section>
-  <div class="section-title">
-    <span>SERVICIOS</span>
-    <h2>Paquetes de Detailing</h2>
-  </div>
-
-  <div class="packages">
-
-    <div class="card">
-      <h3>Base Performance</h3>
-      <span class="tag">Exterior básico</span>
-      <ul>
-        <li>Lavado exterior seguro</li>
-        <li>Limpieza básica de rines</li>
-        <li>Secado con microfibra</li>
-        <li>Cristales exteriores</li>
-      </ul>
-      <div class="info"><span>40–50 min</span><span></span></div>
-      <div class="price">$130 MXN</div>
-      <a href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Base%20Performance" target="_blank" class="cta">Agendar ahora</a>
-    </div>
-
-    <div class="card">
-      <h3>Cockpit Clean</h3>
-      <span class="tag">Interior</span>
-      <ul>
-        <li>Aspirado completo</li>
-        <li>Tablero y puertas</li>
-        <li>Plásticos interiores</li>
-        <li>Cristales interiores</li>
-      </ul>
-      <div class="info"><span>50–70 min</span></div>
-      <div class="price">$200 MXN</div>
-      <a href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Cockpit%20Clean" target="_blank" class="cta">Agendar ahora</a>
-    </div>
-
-    <div class="card featured">
-      <h3>Sport Balance ⭐</h3>
-      <span class="tag">Más vendido</span>
-      <ul>
-        <li>Lavado exterior detallado</li>
-        <li>Limpieza de rines</li>
-        <li>Aspirado interior</li>
-        <li>Plásticos y tablero</li>
-        <li>Cristales completos</li>
-      </ul>
-      <div class="info"><span>1.5 – 2 hrs</span></div>
-      <div class="price">$300 MXN</div>
-      <a href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Sport%20Balance" target="_blank" class="cta">Agendar ahora</a>
-    </div>
-
-    <div class="card">
-      <h3>Interior Refit</h3>
-      <span class="tag">Renovación profunda</span>
-      <ul>
-        <li>Aspirado profundo</li>
-        <li>Alfombras detalladas</li>
-        <li>Plásticos y rincones</li>
-        <li>Neutralización de olores</li>
-      </ul>
-      <div class="info"><span>2 hrs</span></div>
-      <div class="price">$350 MXN</div>
-      <a href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Interior%20Refit" target="_blank" class="cta">Agendar ahora</a>
-    </div>
-
-    <div class="card">
-      <h3>Gloss Line</h3>
-      <span class="tag">Brillo & protección</span>
-      <ul>
-        <li>Lavado exterior detallado</li>
-        <li>Cera líquida a mano</li>
-        <li>Secado profesional</li>
-        <li>Detalles finales</li>
-      </ul>
-      <div class="info"><span>2 hrs</span></div>
-      <div class="price">$400 MXN</div>
-      <a href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Gloss%20Line" target="_blank" class="cta">Agendar ahora</a>
-    </div>
-
-    <div class="card featured">
-      <h3>Track Spec</h3>
-      <span class="tag">Premium</span>
-      <ul>
-        <li>Lavado exterior detallado</li>
-        <li>Limpieza profunda interior</li>
-        <li>Cera a mano</li>
-        <li>Detalles en rines y plásticos</li>
-        <li>Inspección final completa</li>
-      </ul>
-      <div class="info"><span>2.5 – 3 hrs</span></div>
-      <div class="price">$500 MXN</div>
-      <a href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Track%20Spec" target="_blank" class="cta">Agendar ahora</a>
-    </div>
-
-  </div>
-</section>
-<section id="tienda" class="tienda">
-  <h2>🛒 TIENDA DETAIL ONE</h2>
-  <p class="sub">Kit y productos premium para detailing • Compra rápida por WhatsApp</p>
-
-  <!-- PAQUETES -->
-  <h3>🔥 Paquetes exclusivos</h3>
-  <div class="productos">
-
-    <!-- Paquete 1 -->
-    <div class="card">
-      <h4>Race Starter Kit</h4>
-      <p>Tu primer paso hacia un auto impecable</p>
-      <ul>
-        <li>Shampoo PH neutro</li>
-        <li>Manopla de microfibra</li>
-        <li>Toalla de secado premium</li>
-      </ul>
-      <span>$399 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20el%20Race%20Starter%20Kit" target="_blank" rel="noopener">Comprar por WhatsApp</a>
-    </div>
-
-    <!-- Paquete 2 -->
-    <div class="card">
-      <h4>Interior GT Pack</h4>
-      <p>Para un interior limpio y cuidado como nuevo</p>
-      <ul>
-        <li>APC profesional</li>
-        <li>Brochas de cerda suave</li>
-        <li>Toalla microfibra adicional</li>
-      </ul>
-      <span>$549 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20el%20Interior%20GT%20Pack" target="_blank" rel="noopener">Comprar por WhatsApp</a>
-    </div>
-
-    <!-- Paquete 3 -->
-    <div class="card premium">
-      <h4>Elite Shine Bundle ⭐</h4>
-      <p>Todo lo esencial para un acabado de lujo</p>
-      <ul>
-        <li>Shampoo PH neutro</li>
-        <li>APC profesional</li>
-        <li>Cera líquida</li>
-        <li>2 Toallas microfibra</li>
-        <li>Brochas + Manopla</li>
-      </ul>
-      <span>$899 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20el%20Elite%20Shine%20Bundle" target="_blank" rel="noopener">Comprar por WhatsApp</a>
-    </div>
-
-  </div>
-
-  <!-- INDIVIDUALES -->
-  <h3>🧴 Productos individuales</h3>
-  <div class="productos">
-
-    <div class="card small">
-      <h4>Shampoo PH neutro</h4>
-      <span>$180 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20el%20Shampoo%20PH%20neutro" target="_blank" rel="noopener">Comprar</a>
-    </div>
-
-    <div class="card small">
-      <h4>APC profesional</h4>
-      <span>$220 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20el%20APC%20profesional" target="_blank" rel="noopener">Comprar</a>
-    </div>
-
-    <div class="card small">
-      <h4>Cera líquida</h4>
-      <span>$250 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20la%20Cera%20l%C3%ADquida" target="_blank" rel="noopener">Comprar</a>
-    </div>
-
-    <div class="card small">
-      <h4>Toalla microfibra premium</h4>
-      <span>$120 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20una%20Toalla%20microfibra%20premium" target="_blank" rel="noopener">Comprar</a>
-    </div>
-
-    <div class="card small">
-      <h4>Brochas de cerda suave</h4>
-      <span>$150 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20Brochas%20de%20cerda%20suave" target="_blank" rel="noopener">Comprar</a>
-    </div>
-
-    <div class="card small">
-      <h4>Manopla microfibra</h4>
-      <span>$90 MXN</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20una%20Manopla%20microfibra" target="_blank" rel="noopener">Comprar</a>
-    </div>
-
-  </div>
-</section>
-<section id="membresias" class="membresias">
-  <h2>🏆 DETAIL ONE CLUB</h2>
-  <p class="sub">Membresías mensuales • Tu auto siempre en nivel premium</p>
-
-  <div class="planes">
-
-    <!-- Membresía 1 -->
-    <div class="plan">
-      <h3>Pit Lane Basic</h3>
-      <p class="desc">Ideal para mantener tu auto siempre limpio</p>
-      <ul>
-        <li>✔ 2 lavados exteriores al mes</li>
-        <li>✔ Limpieza rápida de rines</li>
-        <li>✔ Secado con microfibra</li>
-      </ul>
-      <span class="precio">$299 MXN / mes</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20la%20membres%C3%ADa%20Pit%20Lane%20Basic" target="_blank">Unirme por WhatsApp</a>
-    </div>
-
-    <!-- Membresía 2 -->
-    <div class="plan destacado">
-      <h3>Sport Performance ⭐</h3>
-      <p class="desc">La más elegida por nuestros clientes</p>
-      <ul>
-        <li>✔ 2 lavados completos (int/ext)</li>
-        <li>✔ Aspirado interior</li>
-        <li>✔ Limpieza de tablero y puertas</li>
-        <li>✔ Prioridad de agenda</li>
-      </ul>
-      <span class="precio">$499 MXN / mes</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20la%20membres%C3%ADa%20Sport%20Performance" target="_blank">Unirme por WhatsApp</a>
-    </div>
-
-    <!-- Membresía 3 -->
-    <div class="plan premium">
-      <h3>Track Elite</h3>
-      <p class="desc">Máximo cuidado, máximo nivel</p>
-      <ul>
-        <li>✔ 4 servicios completos al mes</li>
-        <li>✔ Encerado mensual</li>
-        <li>✔ Limpieza profunda interior</li>
-        <li>✔ Descuento en productos</li>
-        <li>✔ Atención preferencial</li>
-      </ul>
-      <span class="precio">$799 MXN / mes</span>
-      <a href="https://wa.me/522224290839?text=Hola,%20quiero%20la%20membres%C3%ADa%20Track%20Elite" target="_blank">Unirme por WhatsApp</a>
-    </div>
-
-  </div>
-</section>
-<section id="resenas" class="resenas">
-  <h2>⭐ Opiniones de Clientes</h2>
-  <p class="sub">Tu reseña es muy importante para Detail One</p>
-
-  <form onsubmit="enviarResena(event)">
-    <input type="text" id="nombreResena" placeholder="Tu nombre" required>
-    <textarea id="textoResena" placeholder="Escribe tu reseña aquí..." required></textarea>
-    <button type="submit">Enviar reseña</button>
-  </form>
+<section id="servicios">
+<div class="section-title"><span>SERVICIOS</span><h2>Paquetes de Detailing</h2></div>
+<div class="packages">
+<div class="card"><h3>Base Performance</h3><span class="tag">Exterior básico</span><ul><li>Lavado exterior</li><li>Rines básicos</li><li>Secado microfibra</li><li>Cristales ext.</li></ul><div class="price">$130 MXN</div><a class="cta" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Base%20Performance%20en%20Detail%20One" target="_blank">Agendar ahora</a></div>
+<div class="card"><h3>Cockpit Clean</h3><span class="tag">Interior</span><ul><li>Aspirado</li><li>Tablero</li><li>Plásticos</li><li>Cristales int.</li></ul><div class="price">$200 MXN</div><a class="cta" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Cockpit%20Clean%20en%20Detail%20One" target="_blank">Agendar ahora</a></div>
+<div class="card featured"><h3>Sport Balance ⭐</h3><span class="tag">Más vendido</span><ul><li>Lavado completo</li><li>Rines</li><li>Aspirado</li><li>Tablero</li></ul><div class="price">$300 MXN</div><a class="cta" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Sport%20Balance%20en%20Detail%20One" target="_blank">Agendar ahora</a></div>
+<div class="card"><h3>Interior Refit</h3><span class="tag">Profundo</span><ul><li>Aspirado profundo</li><li>Alfombras</li><li>Plásticos</li></ul><div class="price">$350 MXN</div><a class="cta" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Interior%20Refit%20en%20Detail%20One" target="_blank">Agendar ahora</a></div>
+<div class="card"><h3>Gloss Line</h3><span class="tag">Brillo</span><ul><li>Lavado</li><li>Cera líquida</li><li>Detalles</li></ul><div class="price">$400 MXN</div><a class="cta" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Gloss%20Line%20en%20Detail%20One" target="_blank">Agendar ahora</a></div>
+<div class="card featured"><h3>Track Spec</h3><span class="tag">Premium</span><ul><li>Servicio completo</li><li>Cera</li><li>Interior profundo</li></ul><div class="price">$500 MXN</div><a class="cta" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20agendar%20el%20paquete%20Track%20Spec%20en%20Detail%20One" target="_blank">Agendar ahora</a></div>
+</div>
 </section>
 
-<script>
-function enviarResena(e) {
-  e.preventDefault();
+<section id="tienda">
+<div class="section-title"><span>TIENDA</span><h2>Tienda Detail One</h2></div>
+<div class="productos">
+<div class="card"><h3>Race Starter Kit</h3><ul><li>Shampoo PH</li><li>Manopla</li><li>Toalla</li></ul><div class="price">$399 MXN</div><a class="buy">Comprar</a></div>
+<div class="card"><h3>Interior GT Pack</h3><ul><li>APC</li><li>Brochas</li><li>Microfibra</li></ul><div class="price">$549 MXN</div><a class="buy">Comprar</a></div>
+<div class="card featured"><h3>Elite Shine Bundle</h3><ul><li>Kit completo</li></ul><div class="price">$899 MXN</div><a class="buy">Comprar</a></div>
+</div>
+</section>
 
-  const nombre = document.getElementById("nombreResena").value;
-  const mensaje = document.getElementById("textoResena").value;
+<section id="club">
+<div class="section-title"><span>MEMBRESÍAS</span><h2>Detail One Club</h2></div>
+<div class="planes">
+<div class="plan"><h3>Pit Lane Basic</h3><ul><li>2 lavados ext.</li></ul><div class="precio">$299 / mes</div></div>
+<div class="plan featured"><h3>Sport Performance</h3><ul><li>2 completos</li><li>Prioridad</li></ul><div class="precio">$499 / mes</div></div>
+<div class="plan"><h3>Track Elite</h3><ul><li>4 servicios</li><li>Encerado</li></ul><div class="precio">$799 / mes</div></div>
+</div>
+</section>
 
-  const texto = `Hola, soy ${nombre}. Quiero dejar esta reseña para Detail One:%0A%0A${mensaje}`;
-  window.open(`https://wa.me/522224290839?text=${texto}`, "_blank");
-}
-</script>
+<section id="resenas">
+<div class="section-title"><span>RESEÑAS</span><h2>Opiniones de Clientes</h2></div>
+<form onsubmit="event.preventDefault(); const n=this.querySelector('input').value; const t=this.querySelector('textarea').value; window.open('https://wa.me/522224290839?text=Hola%2C%20soy%20'+encodeURIComponent(n)+'%20y%20quiero%20dejar%20esta%20reseña%20para%20Detail%20One:%0A%0A'+encodeURIComponent(t),'_blank');"><input type="text" placeholder="Tu nombre" required><textarea placeholder="Escribe tu reseña" required></textarea><button>Enviar reseña</button></form>
+</section>
 
-<footer>
-  <p>© 2026 <span>Detail One</span> · Detailing Automotriz Sport Luxury</p>
-  <a href="https://wa.me/522224290839" target="_blank" class="whatsapp-btn">WhatsApp</a>
-</footer>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      const swCode = `const CACHE_NAME='detail-one-v1';self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(['/'])))});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})`;const blob=new Blob([swCode],{type:'text/javascript'});const swUrl=URL.createObjectURL(blob);navigator.serviceWorker.register(swUrl);
-    });
-  }
-</script>
+<footer>© 2026 <span style="color:var(--gold)">Detail One</span></footer>
 </body>
 </html>
