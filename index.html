@@ -32,6 +32,45 @@ footer{text-align:center;padding:30px;color:#888;}
 /* BOTONES DEL MODAL */
 .autoOption{padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;cursor:pointer;transition:.2s;}
 .autoOption:hover{transform:scale(1.05);}
+  /* ===== TARJETAS DE MEMBRESÍA DETAIL ONE CLUB ===== */
+.membership-card{
+  position:relative;
+  border-radius:18px;
+  padding:22px;
+  color:white;
+  min-height:170px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background:linear-gradient(135deg,#111,#000 60%);
+  border:1px solid rgba(201,162,77,.5);
+  box-shadow:0 12px 25px rgba(0,0,0,.6);
+  overflow:hidden;
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+
+.membership-card:hover{
+  transform:translateY(-8px) rotateX(6deg) rotateY(-6deg);
+  box-shadow:0 22px 45px rgba(0,0,0,.85);
+}
+
+.membership-card::after{
+  content:'';
+  position:absolute;
+  top:-30px;
+  right:-30px;
+  width:120px;
+  height:120px;
+  background:radial-gradient(circle,var(--gold),transparent 70%);
+  opacity:.18;
+}
+
+.membership-tier{font-size:.75rem;letter-spacing:2px;color:var(--gold);}
+.membership-name{font-size:1.4rem;font-weight:700;margin:6px 0;}
+.membership-benefits{font-size:.85rem;color:#ccc;}
+.membership-price{font-size:1.2rem;font-weight:700;color:var(--gold);}
+.membership-logo{position:absolute;bottom:14px;right:18px;font-size:.7rem;letter-spacing:2px;color:#777;}
+
 </style>
 </head>
 <body>
@@ -148,25 +187,43 @@ footer{text-align:center;padding:30px;color:#888;}
 <div class="planes">
 
 <div class="plan">
-<h3>Pit Lane Basic</h3>
-<p class="desc">Membresía básica para mantener tu auto limpio todo el mes sin preocuparte.</p>
-<ul><li>2 lavados exteriores</li></ul>
-<div class="precio">$299 / mes</div>
+  <div class="membership-card">
+    <div>
+      <div class="membership-tier">MEMBERSHIP</div>
+      <div class="membership-name">Pit Lane Basic</div>
+      <div class="membership-benefits">2 lavados exteriores al mes</div>
+    </div>
+    <div class="membership-price">$299 / mes</div>
+    <div class="membership-logo">DETAIL ONE CLUB</div>
+  </div>
 </div>
+
 
 <div class="plan featured">
-<h3>Sport Performance</h3>
-<p class="desc">La opción ideal para cuidado constante con prioridad de atención.</p>
-<ul><li>2 servicios completos</li><li>Prioridad</li></ul>
-<div class="precio">$499 / mes</div>
+  <div class="membership-card">
+    <div>
+      <div class="membership-tier">PRIORITY MEMBER</div>
+      <div class="membership-name">Sport Performance</div>
+      <div class="membership-benefits">2 servicios completos + prioridad</div>
+    </div>
+    <div class="membership-price">$499 / mes</div>
+    <div class="membership-logo">DETAIL ONE CLUB</div>
+  </div>
 </div>
 
+
 <div class="plan">
-<h3>Track Elite</h3>
-<p class="desc">Membresía premium para los que quieren el máximo nivel de cuidado siempre.</p>
-<ul><li>4 servicios completos</li><li>Encerado</li></ul>
-<div class="precio">$799 / mes</div>
+  <div class="membership-card">
+    <div>
+      <div class="membership-tier">ELITE MEMBER</div>
+      <div class="membership-name">Track Elite</div>
+      <div class="membership-benefits">4 servicios completos + encerado premium</div>
+    </div>
+    <div class="membership-price">$799 / mes</div>
+    <div class="membership-logo">DETAIL ONE CLUB</div>
+  </div>
 </div>
+
 
 </div>
 </section>
