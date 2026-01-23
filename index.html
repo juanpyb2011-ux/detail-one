@@ -115,7 +115,7 @@ footer{text-align:center;padding:30px;color:#888;}
 <p class="desc">Kit esencial para comenzar a cuidar tu auto en casa con productos seguros y efectivos.</p>
 <ul><li>Shampoo PH</li><li>Manopla</li><li>Toalla</li></ul>
 <div class="price">$399 MXN</div>
-<a class="buy">Comprar</a>
+<a class="buy" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20comprar%20el%20Race%20Starter%20Kit%20de%20Detail%20One" target="_blank">Comprar</a>
 </div>
 
 <div class="card">
@@ -123,7 +123,7 @@ footer{text-align:center;padding:30px;color:#888;}
 <p class="desc">Pack especializado para limpieza interior detallada y mantenimiento frecuente.</p>
 <ul><li>APC</li><li>Brochas</li><li>Microfibra</li></ul>
 <div class="price">$549 MXN</div>
-<a class="buy">Comprar</a>
+<a class="buy" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20comprar%20el%20Interior%20GT%20Pack%20de%20Detail%20One" target="_blank">Comprar</a>
 </div>
 
 <div class="card featured">
@@ -131,7 +131,7 @@ footer{text-align:center;padding:30px;color:#888;}
 <p class="desc">Bundle completo con productos premium para resultados profesionales desde casa.</p>
 <ul><li>Kit completo</li></ul>
 <div class="price">$899 MXN</div>
-<a class="buy">Comprar</a>
+<a class="buy" href="https://wa.me/522224290839?text=Hola%2C%20quiero%20comprar%20el%20Elite%20Shine%20Bundle%20de%20Detail%20One" target="_blank">Comprar</a>
 </div>
 
 </div>
@@ -188,78 +188,45 @@ footer{text-align:center;padding:30px;color:#888;}
   </div>
 </div>
 
-<!-- Modal para tienda -->
-<div id="shopModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000;">
-  <div style="background:var(--dark);padding:30px;border-radius:15px;max-width:400px;width:90%;text-align:center;">
-    <h3 style="color:white;margin-bottom:20px;">Selecciona cantidad</h3>
-    <div style="display:grid;gap:12px;">
-      <button class="quantityOption" data-qty="1" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">1 unidad</button>
-      <button class="quantityOption" data-qty="2" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">2 unidades</button>
-      <button class="quantityOption" data-qty="3" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">3 unidades</button>
-    </div>
-    <button id="closeShopModal" style="margin-top:20px;padding:10px 20px;border:none;border-radius:8px;background:#555;color:white;">Cancelar</button>
-  </div>
-</div>
-
 <footer>
 <p>© 2026 <span style="color:var(--gold)">Detail One</span></p>
 <p>Sport Luxury Detailing · Agenda por WhatsApp</p>
 </footer>
 
 <script>
-// Variables globales
+// Variable para almacenar el paquete seleccionado
 let selectedPackage = "";
-let selectedProduct = "";
 
-// Modal autos
+// Función para abrir modal con paquete específico
 function openAutoModal(packageName) {
   selectedPackage = packageName;
   document.getElementById('autoModal').style.display = 'flex';
 }
+
+// Cerrar modal
 document.getElementById('closeModal').addEventListener('click', () => {
   document.getElementById('autoModal').style.display = 'none';
 });
+
+// Cuando seleccionan un tipo de auto
 document.querySelectorAll('.autoOption').forEach(btn => {
   btn.addEventListener('click', () => {
     const autoType = btn.textContent.split(' - ')[0];
     const price = btn.dataset.price;
+    // Abrir WhatsApp con mensaje
     const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType} con precio de $${price} MXN en Detail One.`;
     window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
     document.getElementById('autoModal').style.display = 'none';
   });
 });
 
-// Botones agendar ahora
+// Reemplazar los enlaces originales de "Agendar ahora"
 document.querySelectorAll('.cta').forEach(btn => {
   if(btn.textContent === 'Agendar ahora') {
     const packageName = btn.parentElement.querySelector('h3').textContent;
     btn.style.cursor = 'pointer';
     btn.addEventListener('click', () => openAutoModal(packageName));
   }
-});
-
-// Modal tienda
-function openShopModal(productName) {
-  selectedProduct = productName;
-  document.getElementById('shopModal').style.display = 'flex';
-}
-document.getElementById('closeShopModal').addEventListener('click', () => {
-  document.getElementById('shopModal').style.display = 'none';
-});
-document.querySelectorAll('.quantityOption').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const qty = btn.dataset.qty;
-    const message = `Hola, quiero comprar ${qty} unidad(es) del producto ${selectedProduct} de Detail One.`;
-    window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
-    document.getElementById('shopModal').style.display = 'none';
-  });
-});
-
-// Botones comprar
-document.querySelectorAll('.buy').forEach(btn => {
-  const productName = btn.parentElement.querySelector('h3').textContent;
-  btn.style.cursor = 'pointer';
-  btn.addEventListener('click', () => openShopModal(productName));
 });
 </script>
 
