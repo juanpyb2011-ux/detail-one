@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detail One | Sport Luxury Detailing</title>
 
-<meta name="description" content="Detail One es un servicio de detailing automotriz sport luxury. Lavado premium, interior profundo, encerado y más. Agenda por WhatsApp.">
-<meta name="keywords" content="detailing, lavado de autos, detailing premium, lavado profesional, encerado, detailing cerca de mi">
-<meta name="author" content="Detail One">
-
+<meta name="description" content="Detail One es un servicio de detailing automotriz sport luxury.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,17 +13,23 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Montserrat',sans-serif;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--silver);line-height:1.6;padding-top:70px;}
-nav{position:fixed;top:0;left:0;width:100%;background:#000;display:flex;justify-content:center;gap:14px;padding:12px;z-index:999;border-bottom:1px solid var(--gold);}nav a{color:var(--gold);text-decoration:none;font-weight:600;padding:6px 14px;border:1px solid var(--gold);border-radius:20px;font-size:.85rem;}nav a:hover{background:var(--gold);color:#000;}nav a.club{background:var(--gold);color:#000;}
-header{background:linear-gradient(135deg,#000,#1a1a1a);padding:100px 20px;text-align:center;}header h1{font-size:3rem;color:white;letter-spacing:3px;}header h1 span{color:var(--gold);}header p{margin-top:12px;color:#bbb;}
+nav{position:fixed;top:0;left:0;width:100%;background:#000;display:flex;justify-content:center;gap:14px;padding:12px;z-index:999;border-bottom:1px solid var(--gold);}
+nav a{color:var(--gold);text-decoration:none;font-weight:600;padding:6px 14px;border:1px solid var(--gold);border-radius:20px;font-size:.85rem;}
+nav a:hover{background:var(--gold);color:#000;}
+nav a.club{background:var(--gold);color:#000;}
+header{background:linear-gradient(135deg,#000,#1a1a1a);padding:100px 20px;text-align:center;}
+header h1{font-size:3rem;color:white;letter-spacing:3px;}
+header h1 span{color:var(--gold);}
 section{padding:70px 8%;}
-.section-title{text-align:center;margin-bottom:50px;} .section-title span{color:var(--gold);font-size:.85rem;letter-spacing:2px;} .section-title h2{font-size:2.2rem;color:white;margin-top:8px;}
+.section-title{text-align:center;margin-bottom:50px;}
+.section-title span{color:var(--gold);font-size:.85rem;letter-spacing:2px;}
+.section-title h2{font-size:2.2rem;color:white;margin-top:8px;}
 .packages,.productos,.planes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
-.card,.plan{background:linear-gradient(180deg,#151515,#0e0e0e);border-radius:18px;padding:28px;border:1px solid #222;transition:.3s;} .card:hover,.plan:hover{transform:translateY(-6px);} .featured{border:1px solid var(--gold);box-shadow:0 0 18px rgba(201,162,77,.25);} 
-.card h3,.plan h3{color:white;margin-bottom:6px;} .tag{font-size:.75rem;color:var(--gold);margin-bottom:10px;display:block;} .desc{font-size:.85rem;color:#ccc;margin-bottom:14px;}
-.card ul,.plan ul{list-style:none;margin-bottom:18px;} .card ul li,.plan ul li{font-size:.9rem;margin-bottom:8px;padding-left:16px;position:relative;} .card ul li::before,.plan ul li::before{content:'•';position:absolute;left:0;color:var(--gold);} 
+.card,.plan{background:linear-gradient(180deg,#151515,#0e0e0e);border-radius:18px;padding:28px;border:1px solid #222;transition:.3s;}
+.card:hover,.plan:hover{transform:translateY(-6px);}
+.featured{border:1px solid var(--gold);box-shadow:0 0 18px rgba(201,162,77,.25);}
 .price,.precio{font-size:1.4rem;font-weight:700;color:var(--gold);margin:10px 0;text-align:right;}
 .cta,.buy{display:block;text-align:center;padding:12px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f5d27a);color:#000;font-weight:700;text-decoration:none;cursor:pointer;}
-form{max-width:500px;margin:0 auto;}form input,form textarea{width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:none;}form button{width:100%;padding:12px;border:none;border-radius:10px;background:var(--gold);font-weight:700;}
 footer{text-align:center;padding:30px;color:#888;}
 </style>
 </head>
@@ -41,120 +44,82 @@ footer{text-align:center;padding:30px;color:#888;}
 
 <header>
 <h1>DETAIL <span>ONE</span></h1>
-<p>El primer nivel del detailing · Sport Luxury</p>
 <a href="#servicios" class="cta">Ver paquetes</a>
 </header>
 
+<!-- SERVICIOS -->
 <section id="servicios">
 <div class="section-title"><span>SERVICIOS</span><h2>Paquetes de Detailing</h2></div>
 <div class="packages">
 
-<div class="card">
-<h3>Base Performance</h3>
-<span class="tag">Exterior básico</span>
-<p class="desc">Lavado exterior profesional con productos seguros para la pintura.</p>
-<ul><li>Lavado exterior</li><li>Rines básicos</li><li>Secado microfibra</li><li>Cristales ext.</li></ul>
-<div class="price">$130 MXN</div>
-<a class="cta" data-base="130">Agendar ahora</a>
-</div>
-
-<div class="card">
-<h3>Cockpit Clean</h3>
-<span class="tag">Interior</span>
-<p class="desc">Limpieza interior pensada para mantener el habitáculo fresco.</p>
-<ul><li>Aspirado</li><li>Tablero</li><li>Plásticos</li><li>Cristales int.</li></ul>
-<div class="price">$200 MXN</div>
-<a class="cta" data-base="200">Agendar ahora</a>
-</div>
-
-<div class="card featured">
-<h3>Sport Balance ⭐</h3>
-<span class="tag">Más vendido</span>
-<p class="desc">Combinación perfecta de limpieza exterior e interior.</p>
-<ul><li>Lavado completo</li><li>Rines</li><li>Aspirado</li><li>Tablero</li></ul>
-<div class="price">$300 MXN</div>
-<a class="cta" data-base="300">Agendar ahora</a>
-</div>
-
-<div class="card">
-<h3>Interior Refit</h3>
-<span class="tag">Profundo</span>
-<p class="desc">Renovación profunda del interior.</p>
-<ul><li>Aspirado profundo</li><li>Alfombras</li><li>Plásticos</li></ul>
-<div class="price">$350 MXN</div>
-<a class="cta" data-base="350">Agendar ahora</a>
-</div>
-
-<div class="card">
-<h3>Gloss Line</h3>
-<span class="tag">Brillo</span>
-<p class="desc">Realza el brillo y protege la pintura.</p>
-<ul><li>Lavado</li><li>Cera líquida</li><li>Detalles</li></ul>
-<div class="price">$400 MXN</div>
-<a class="cta" data-base="400">Agendar ahora</a>
-</div>
-
-<div class="card featured">
-<h3>Track Spec</h3>
-<span class="tag">Premium</span>
-<p class="desc">Servicio más completo con acabado premium.</p>
-<ul><li>Servicio completo</li><li>Cera</li><li>Interior profundo</li></ul>
-<div class="price">$500 MXN</div>
-<a class="cta" data-base="500">Agendar ahora</a>
-</div>
+<div class="card"><h3>Base Performance</h3><div class="price">$130 MXN</div><a class="cta" data-base="130">Agendar ahora</a></div>
+<div class="card"><h3>Cockpit Clean</h3><div class="price">$200 MXN</div><a class="cta" data-base="200">Agendar ahora</a></div>
+<div class="card featured"><h3>Sport Balance ⭐</h3><div class="price">$300 MXN</div><a class="cta" data-base="300">Agendar ahora</a></div>
+<div class="card"><h3>Interior Refit</h3><div class="price">$350 MXN</div><a class="cta" data-base="350">Agendar ahora</a></div>
+<div class="card"><h3>Gloss Line</h3><div class="price">$400 MXN</div><a class="cta" data-base="400">Agendar ahora</a></div>
+<div class="card featured"><h3>Track Spec</h3><div class="price">$500 MXN</div><a class="cta" data-base="500">Agendar ahora</a></div>
 
 </div>
 </section>
 
-<!-- MODAL -->
+<!-- TIENDA -->
+<section id="tienda">
+<div class="section-title"><span>TIENDA</span><h2>Tienda Detail One</h2></div>
+<div class="productos">
+<div class="card"><h3>Race Starter Kit</h3><div class="price">$399 MXN</div><a class="buy" href="https://wa.me/522224290839?text=Hola%20quiero%20comprar%20el%20Race%20Starter%20Kit" target="_blank">Comprar</a></div>
+<div class="card"><h3>Interior GT Pack</h3><div class="price">$549 MXN</div><a class="buy" href="https://wa.me/522224290839?text=Hola%20quiero%20comprar%20el%20Interior%20GT%20Pack" target="_blank">Comprar</a></div>
+</div>
+</section>
+
+<!-- CLUB -->
+<section id="club">
+<div class="section-title"><span>MEMBRESÍAS</span><h2>Detail One Club</h2></div>
+<div class="planes">
+<div class="plan"><h3>Pit Lane Basic</h3><div class="precio">$299 / mes</div></div>
+<div class="plan featured"><h3>Sport Performance</h3><div class="precio">$499 / mes</div></div>
+<div class="plan"><h3>Track Elite</h3><div class="precio">$799 / mes</div></div>
+</div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="resenas">
+<div class="section-title"><span>RESEÑAS</span><h2>Opiniones de Clientes</h2></div>
+<form onsubmit="event.preventDefault(); window.open('https://wa.me/522224290839?text=Hola%20quiero%20dejar%20una%20reseña','_blank');">
+<input type="text" placeholder="Tu nombre" required>
+<textarea placeholder="Escribe tu reseña" required></textarea>
+<button>Enviar reseña</button>
+</form>
+</section>
+
+<!-- MODAL AUTOS -->
 <div id="autoModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000;">
-  <div style="background:var(--dark);padding:30px;border-radius:15px;max-width:400px;width:90%;text-align:center;">
+  <div style="background:var(--dark);padding:30px;border-radius:15px;text-align:center;">
     <h3 style="color:white;margin-bottom:20px;">Selecciona tu tipo de auto</h3>
-    <div style="display:grid;gap:12px;">
-      <button class="autoOption" data-mult="1.0">Sedán</button>
-      <button class="autoOption" data-mult="1.1">Hatchback</button>
-      <button class="autoOption" data-mult="1.3">SUV</button>
-      <button class="autoOption" data-mult="1.5">Deportivo</button>
-    </div>
-    <button id="closeModal" style="margin-top:20px;padding:10px 20px;border:none;border-radius:8px;background:#555;color:white;">Cancelar</button>
+    <button class="autoOption" data-mult="1.0">Sedán</button>
+    <button class="autoOption" data-mult="1.1">Hatchback</button>
+    <button class="autoOption" data-mult="1.3">SUV</button>
+    <button class="autoOption" data-mult="1.5">Deportivo</button>
+    <br><br>
+    <button id="closeModal">Cancelar</button>
   </div>
 </div>
 
-<footer>
-<p>© 2026 <span style="color:var(--gold)">Detail One</span></p>
-<p>Sport Luxury Detailing · Agenda por WhatsApp</p>
-</footer>
+<footer>© 2026 Detail One</footer>
 
 <script>
-let selectedPackage = "";
-let selectedBasePrice = 0;
-
-function openAutoModal(packageName, basePrice) {
-  selectedPackage = packageName;
-  selectedBasePrice = parseFloat(basePrice);
-  document.getElementById('autoModal').style.display = 'flex';
-}
-
-document.getElementById('closeModal').addEventListener('click', () => {
-  document.getElementById('autoModal').style.display = 'none';
+let selectedPackage="",selectedBasePrice=0;
+function openAutoModal(name,price){selectedPackage=name;selectedBasePrice=parseFloat(price);autoModal.style.display='flex';}
+closeModal.onclick=()=>autoModal.style.display='none';
+document.querySelectorAll('.autoOption').forEach(btn=>{
+ btn.onclick=()=>{
+  const final=Math.round(selectedBasePrice*parseFloat(btn.dataset.mult));
+  const msg=`Hola, quiero agendar el paquete ${selectedPackage} para un ${btn.textContent}. Precio final: $${final} MXN.`;
+  window.open('https://wa.me/522224290839?text='+encodeURIComponent(msg),'_blank');
+  autoModal.style.display='none';
+ };
 });
-
-document.querySelectorAll('.autoOption').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const autoType = btn.textContent;
-    const multiplier = parseFloat(btn.dataset.mult);
-    const finalPrice = Math.round(selectedBasePrice * multiplier);
-
-    const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio final: $${finalPrice} MXN.`;
-    window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
-    document.getElementById('autoModal').style.display = 'none';
-  });
-});
-
-document.querySelectorAll('#servicios .card .cta').forEach(btn => {
-  const packageName = btn.parentElement.querySelector('h3').textContent;
-  const basePrice = btn.dataset.base;
-  btn.addEventListener('click', () => openAutoModal(packageName, basePrice));
+document.querySelectorAll('#servicios .cta').forEach(btn=>{
+ btn.onclick=()=>openAutoModal(btn.parentElement.querySelector('h3').textContent,btn.dataset.base);
 });
 </script>
 
