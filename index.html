@@ -28,6 +28,10 @@ section{padding:70px 8%;}
 .cta,.buy{display:block;text-align:center;padding:12px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f5d27a);color:#000;font-weight:700;text-decoration:none;}
 form{max-width:500px;margin:0 auto;}form input,form textarea{width:100%;margin-bottom:12px;padding:10px;border-radius:8px;border:none;}form button{width:100%;padding:12px;border:none;border-radius:10px;background:var(--gold);font-weight:700;}
 footer{text-align:center;padding:30px;color:#888;}
+
+/* BOTONES DEL MODAL */
+.autoOption{padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;cursor:pointer;transition:.2s;}
+.autoOption:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
@@ -54,8 +58,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <span class="tag">Exterior básico</span>
 <p class="desc">Lavado exterior profesional con productos seguros para la pintura. Ideal para mantenimiento regular y autos de uso diario.</p>
 <ul><li>Lavado exterior</li><li>Rines básicos</li><li>Secado microfibra</li><li>Cristales ext.</li></ul>
-<div class="price">$130 MXN</div>
-<a class="cta">Agendar ahora</a>
+<div class="price">Desde $130 MXN</div>
+<a class="cta agendar-btn">📅 Agendar ahora</a>
 </div>
 
 <div class="card">
@@ -63,8 +67,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <span class="tag">Interior</span>
 <p class="desc">Limpieza interior pensada para mantener el habitáculo fresco, ordenado y libre de polvo.</p>
 <ul><li>Aspirado</li><li>Tablero</li><li>Plásticos</li><li>Cristales int.</li></ul>
-<div class="price">$200 MXN</div>
-<a class="cta">Agendar ahora</a>
+<div class="price">Desde $200 MXN</div>
+<a class="cta agendar-btn">📅 Agendar ahora</a>
 </div>
 
 <div class="card featured">
@@ -72,8 +76,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <span class="tag">Más vendido</span>
 <p class="desc">La combinación perfecta de limpieza exterior e interior para mantener tu auto siempre presentable.</p>
 <ul><li>Lavado completo</li><li>Rines</li><li>Aspirado</li><li>Tablero</li></ul>
-<div class="price">$300 MXN</div>
-<a class="cta">Agendar ahora</a>
+<div class="price">Desde $300 MXN</div>
+<a class="cta agendar-btn">📅 Agendar ahora</a>
 </div>
 
 <div class="card">
@@ -81,8 +85,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <span class="tag">Profundo</span>
 <p class="desc">Renovación profunda del interior, ideal para autos con uso intenso o acumulación de suciedad.</p>
 <ul><li>Aspirado profundo</li><li>Alfombras</li><li>Plásticos</li></ul>
-<div class="price">$350 MXN</div>
-<a class="cta">Agendar ahora</a>
+<div class="price">Desde $320 MXN</div>
+<a class="cta agendar-btn">📅 Agendar ahora</a>
 </div>
 
 <div class="card">
@@ -90,8 +94,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <span class="tag">Brillo</span>
 <p class="desc">Servicio enfocado en realzar el brillo y proteger la pintura con cera líquida de calidad.</p>
 <ul><li>Lavado</li><li>Cera líquida</li><li>Detalles</li></ul>
-<div class="price">$400 MXN</div>
-<a class="cta">Agendar ahora</a>
+<div class="price">Desde $400 MXN</div>
+<a class="cta agendar-btn">📅 Agendar ahora</a>
 </div>
 
 <div class="card featured">
@@ -99,13 +103,14 @@ footer{text-align:center;padding:30px;color:#888;}
 <span class="tag">Premium</span>
 <p class="desc">Nuestro servicio más completo. Pensado para quienes buscan un acabado premium y máximo cuidado.</p>
 <ul><li>Servicio completo</li><li>Cera</li><li>Interior profundo</li></ul>
-<div class="price">$500 MXN</div>
-<a class="cta">Agendar ahora</a>
+<div class="price">Desde $500 MXN</div>
+<a class="cta agendar-btn">📅 Agendar ahora</a>
 </div>
 
 </div>
 </section>
 
+<!-- ================= TIENDA (SIN CAMBIOS) ================= -->
 <section id="tienda">
 <div class="section-title"><span>TIENDA</span><h2>Tienda Detail One</h2></div>
 <div class="productos">
@@ -137,6 +142,7 @@ footer{text-align:center;padding:30px;color:#888;}
 </div>
 </section>
 
+<!-- ================= MEMBRESÍAS (SIN CAMBIOS) ================= -->
 <section id="club">
 <div class="section-title"><span>MEMBRESÍAS</span><h2>Detail One Club</h2></div>
 <div class="planes">
@@ -165,6 +171,7 @@ footer{text-align:center;padding:30px;color:#888;}
 </div>
 </section>
 
+<!-- ================= RESEÑAS (SIN CAMBIOS) ================= -->
 <section id="resenas">
 <div class="section-title"><span>RESEÑAS</span><h2>Opiniones de Clientes</h2></div>
 <form onsubmit="event.preventDefault(); const n=this.querySelector('input').value; const t=this.querySelector('textarea').value; window.open('https://wa.me/522224290839?text=Hola%2C%20soy%20'+encodeURIComponent(n)+'%20y%20quiero%20dejar%20esta%20reseña%20para%20Detail%20One:%0A%0A'+encodeURIComponent(t),'_blank');">
@@ -174,16 +181,19 @@ footer{text-align:center;padding:30px;color:#888;}
 </form>
 </section>
 
-<!-- Modal para selección de tipo de auto -->
+<!-- ================= MODAL NUEVO ================= -->
 <div id="autoModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000;">
-  <div style="background:var(--dark);padding:30px;border-radius:15px;max-width:400px;width:90%;text-align:center;">
-    <h3 style="color:white;margin-bottom:20px;">Selecciona tu tipo de auto</h3>
+  <div style="background:var(--dark);padding:30px;border-radius:15px;max-width:420px;width:90%;text-align:center;">
+    <h3 style="color:white;margin-bottom:10px;">Selecciona tu tipo de auto</h3>
+    <p id="selectedPackageName" style="color:var(--gold);margin-bottom:20px;font-weight:700;"></p>
+
     <div style="display:grid;gap:12px;">
-      <button class="autoOption" data-price="150" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">Sedán - $150 MXN</button>
-      <button class="autoOption" data-price="200" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">SUV - $200 MXN</button>
-      <button class="autoOption" data-price="250" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">Deportivo - $250 MXN</button>
-      <button class="autoOption" data-price="180" style="padding:12px;border-radius:10px;border:none;font-weight:700;background:var(--gold);color:#000;">Hatchback - $180 MXN</button>
+      <button class="autoOption" data-type="Sedán">Sedán</button>
+      <button class="autoOption" data-type="Hatchback">Hatchback</button>
+      <button class="autoOption" data-type="SUV">SUV</button>
+      <button class="autoOption" data-type="Deportivo">Deportivo</button>
     </div>
+
     <button id="closeModal" style="margin-top:20px;padding:10px 20px;border:none;border-radius:8px;background:#555;color:white;">Cancelar</button>
   </div>
 </div>
@@ -194,39 +204,40 @@ footer{text-align:center;padding:30px;color:#888;}
 </footer>
 
 <script>
-// Variable para almacenar el paquete seleccionado
 let selectedPackage = "";
 
-// Función para abrir modal con paquete específico
+const packagePrices = {
+  "Base Performance": { "Sedán":130, "Hatchback":130, "SUV":180, "Deportivo":200 },
+  "Cockpit Clean": { "Sedán":200, "Hatchback":220, "SUV":250, "Deportivo":300 },
+  "Sport Balance ⭐": { "Sedán":300, "Hatchback":300, "SUV":350, "Deportivo":400 },
+  "Interior Refit": { "Sedán":350, "Hatchback":320, "SUV":390, "Deportivo":449 },
+  "Gloss Line": { "Sedán":400, "Hatchback":400, "SUV":450, "Deportivo":500 },
+  "Track Spec": { "Sedán":500, "Hatchback":520, "SUV":600, "Deportivo":700 }
+};
+
 function openAutoModal(packageName) {
   selectedPackage = packageName;
+  document.getElementById('selectedPackageName').textContent = packageName;
   document.getElementById('autoModal').style.display = 'flex';
 }
 
-// Cerrar modal
 document.getElementById('closeModal').addEventListener('click', () => {
   document.getElementById('autoModal').style.display = 'none';
 });
 
-// Cuando seleccionan un tipo de auto
 document.querySelectorAll('.autoOption').forEach(btn => {
   btn.addEventListener('click', () => {
-    const autoType = btn.textContent.split(' - ')[0];
-    const price = btn.dataset.price;
-    // Abrir WhatsApp con mensaje
-    const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType} con precio de $${price} MXN en Detail One.`;
+    const autoType = btn.dataset.type;
+    const price = packagePrices[selectedPackage][autoType];
+    const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
     window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
     document.getElementById('autoModal').style.display = 'none';
   });
 });
 
-// Reemplazar los enlaces originales de "Agendar ahora"
-document.querySelectorAll('.cta').forEach(btn => {
-  if(btn.textContent === 'Agendar ahora') {
-    const packageName = btn.parentElement.querySelector('h3').textContent;
-    btn.style.cursor = 'pointer';
-    btn.addEventListener('click', () => openAutoModal(packageName));
-  }
+document.querySelectorAll('.agendar-btn').forEach(btn => {
+  const packageName = btn.parentElement.querySelector('h3').textContent;
+  btn.addEventListener('click', () => openAutoModal(packageName));
 });
 </script>
 
