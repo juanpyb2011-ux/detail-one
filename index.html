@@ -612,6 +612,36 @@ function updateMembershipLocks() {
     }
   });
 }
+// Obtener elementos del modal
+const membershipModal = document.getElementById("membershipModal");
+const modalName = document.getElementById("modalMembershipName");
+const modalBenefits = document.getElementById("modalMembershipBenefits");
+const modalPrice = document.getElementById("modalMembershipPrice");
+const modalWhatsAppBtn = document.getElementById("modalWhatsAppBtn");
+const closeMembershipModal = document.getElementById("closeMembershipModal");
+
+// Al hacer clic en membresías desbloqueadas
+document.querySelectorAll('.membership-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (!card.classList.contains('locked')) {
+      // Mostrar modal con info
+      modalName.textContent = card.querySelector('.membership-name').textContent;
+      modalBenefits.textContent = card.querySelector('.membership-benefits').textContent;
+      modalPrice.textContent = card.querySelector('.membership-price').textContent;
+      // Enlace de WhatsApp
+      modalWhatsAppBtn.href = "https://wa.me/522224290839?text=" + encodeURIComponent(
+        "Hola, quiero conseguir la membresía " + modalName.textContent + " de Detail One Club."
+      );
+
+      membershipModal.style.display = "flex";
+    }
+  });
+});
+
+// Cerrar modal
+closeMembershipModal.addEventListener('click', () => {
+  membershipModal.style.display = "none";
+});
 
 // Mensaje de puntos para próxima membresía
 function updatePointsMessage() {
@@ -721,6 +751,16 @@ document.getElementById("checkoutCart").addEventListener('click', () => {
 
 </script>
 
+<!-- ================= MODAL DE MEMBRESÍAS DESBLOQUEADAS ================= -->
+<div id="membershipModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000;">
+  <div style="background:var(--dark);padding:30px;border-radius:15px;max-width:420px;width:90%;text-align:center;position:relative;">
+    <h3 id="modalMembershipName" style="color:var(--gold);margin-bottom:10px;"></h3>
+    <p id="modalMembershipBenefits" style="color:#ccc;margin-bottom:20px;"></p>
+    <div id="modalMembershipPrice" style="color:var(--gold);font-weight:700;margin-bottom:20px;"></div>
+    <a id="modalWhatsAppBtn" href="#" target="_blank" style="display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#f5d27a);color:#000;font-weight:700;text-decoration:none;">¡Conseguir ahora!</a>
+    <button id="closeMembershipModal" style="position:absolute;top:10px;right:10px;padding:6px 12px;background:#555;color:white;border:none;border-radius:8px;">X</button>
+  </div>
+</div>
 
 </body>
 </html>
