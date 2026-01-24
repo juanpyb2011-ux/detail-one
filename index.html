@@ -411,8 +411,32 @@ const packagePrices = {
   "Gloss Line": { "Sedán":400, "Hatchback":400, "SUV":450, "Deportivo":500 },
   "Track Spec": { "Sedán":500, "Hatchback":520, "SUV":600, "Deportivo":700 }
 };
+let userPoints = localStorage.getItem("onePoints")
+  ? parseInt(localStorage.getItem("onePoints"))
+  : 0;
+
+function savePoints() {
+  localStorage.setItem("onePoints", userPoints);
+}
+
+const packagePoints = {
+  "Base Performance": 200,
+  "Cockpit Clean": 220,
+  "Sport Balance ⭐": 300,
+  "Interior Refit": 320,
+  "Gloss Line": 350,
+  "Track Spec": 450
+};
 
 function openAutoModal(packageName) {
+  // ⭐ SISTEMA DE ONEPOINTS
+const pointsEarned = packagePoints[packageName] || 0;
+userPoints += pointsEarned;
+savePoints();
+updateMembershipLocks();
+updatePointsMessage();
+updateProgressBar();
+
   selectedPackage = packageName;
   document.getElementById('selectedPackageName').textContent = packageName;
   document.getElementById('autoModal').style.display = 'flex';
@@ -512,10 +536,41 @@ function updateMembershipLocks() {
 }
 
 updateMembershipLocks();
+updatePointsMessage();
+updateProgressBar();
   function savePoints() {
   localStorage.setItem("onePoints", userPoints);
 }
 
+function updatePointsMessage() {
+  const messageEl = document.getElementById("pointsMessage");
+
+  const tiers = [
+    { name: "Pit Lane Basic", required: 1000 },
+    { name: "Sport Performance", required: 2000 },
+    { name: "Track Elite", required: 5000 }
+  ];
+
+  let nextTier = tiers.find(t => userPoints < t.required);
+
+  if (nextTier) {
+    const missing = nextTier.required - userPoints;
+    messageEl.textContent = `Te faltan ${missing} OnePoints para ${nextTier.name}`;
+  } else {
+    messageEl.textContent = "🏆 ¡Todas las membresías desbloqueadas!";
+  }
+}
+function updateProgressBar() {
+  const bar = document.getElementById("pointsBar");
+
+  const targets = [1000, 2000, 5000];
+  let nextTarget = targets.find(t => userPoints < t) || targets[targets.length - 1];
+
+  let progress = (userPoints / nextTarget) * 100;
+  if (progress > 100) progress = 100;
+
+  bar.style.width = progress + "%";
+}
 
 </script>
 
