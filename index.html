@@ -572,23 +572,30 @@ document.addEventListener("DOMContentLoaded", () => {
   btn.addEventListener('click', () => {
     const autoType = btn.dataset.type;
     const price = packagePrices[selectedPackage][autoType];
+
+    const confirmSend = confirm(
+      `Vas a agendar:\n\nPaquete: ${selectedPackage}\nTipo de auto: ${autoType}\nPrecio: $${price} MXN\n\n¿Deseas continuar a WhatsApp para enviarlo?`
+    );
+
+    if (!confirmSend) return; // ❌ Si cancela, no pasa nada
+
     const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
-    
+
     // Abrir WhatsApp
     window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
-    
-    // ===== Sumar OnePoints aquí =====
+
+    // ✅ Sumar puntos SOLO después de confirmar
     const pointsEarned = packagePoints[selectedPackage] || 0;
     userPoints += pointsEarned;
     savePoints();
     updateMembershipLocks();
     updatePointsMessage();
     updateProgressBar();
-    
-    // Cerrar modal
+
     document.getElementById('autoModal').style.display = 'none';
   });
 });
+
 
 
   // ===== Botones Agendar ahora =====
