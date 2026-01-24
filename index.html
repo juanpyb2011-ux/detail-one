@@ -70,6 +70,23 @@ footer{text-align:center;padding:30px;color:#888;}
 .membership-benefits{font-size:.85rem;color:#ccc;}
 .membership-price{font-size:1.2rem;font-weight:700;color:var(--gold);}
 .membership-logo{position:absolute;bottom:14px;right:18px;font-size:.7rem;letter-spacing:2px;color:#777;}
+/* ===== COLORES POR NIVEL DE MEMBRESÍA ===== */
+.basic-tier{
+  background:linear-gradient(135deg,#2a2a2a,#111);
+  border:1px solid #555;
+}
+
+.performance-tier{
+  background:linear-gradient(135deg,#3a2b00,#000);
+  border:1px solid #c9a24d;
+  box-shadow:0 0 20px rgba(201,162,77,.25);
+}
+
+.elite-tier{
+  background:linear-gradient(135deg,#111,#1a1a1a,#000);
+  border:1px solid #ffffff22;
+  box-shadow:0 0 25px rgba(255,255,255,.15);
+}
 
 </style>
 </head>
@@ -187,7 +204,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <div class="planes">
 
 <div class="plan">
-  <div class="membership-card">
+  <div class="membership-card basic-tier">
+
     <div>
       <div class="membership-tier">MEMBERSHIP</div>
       <div class="membership-name">Pit Lane Basic</div>
@@ -200,7 +218,8 @@ footer{text-align:center;padding:30px;color:#888;}
 
 
 <div class="plan featured">
-  <div class="membership-card">
+  <div class="membership-card performance-tier">
+
     <div>
       <div class="membership-tier">PRIORITY MEMBER</div>
       <div class="membership-name">Sport Performance</div>
@@ -213,7 +232,8 @@ footer{text-align:center;padding:30px;color:#888;}
 
 
 <div class="plan">
-  <div class="membership-card">
+  <div class="membership-card elite-tier">
+
     <div>
       <div class="membership-tier">ELITE MEMBER</div>
       <div class="membership-name">Track Elite</div>
