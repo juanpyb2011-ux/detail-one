@@ -568,34 +568,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll('.autoOption').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const autoType = btn.dataset.type;
-      const price = packagePrices[selectedPackage][autoType];
-      const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
-      window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
-      document.getElementById('autoModal').style.display = 'none';
-    });
+  btn.addEventListener('click', () => {
+    const autoType = btn.dataset.type;
+    const price = packagePrices[selectedPackage][autoType];
+    const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
+    
+    // Abrir WhatsApp
+    window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
+    
+    // ===== Sumar OnePoints aquí =====
+    const pointsEarned = packagePoints[selectedPackage] || 0;
+    userPoints += pointsEarned;
+    savePoints();
+    updateMembershipLocks();
+    updatePointsMessage();
+    updateProgressBar();
+    
+    // Cerrar modal
+    document.getElementById('autoModal').style.display = 'none';
   });
+});
+
 
   // ===== Botones Agendar ahora =====
   document.querySelectorAll('.agendar-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const packageName = btn.parentElement.querySelector('h3').textContent;
-
-      // Sumar OnePoints
-      const pointsEarned = packagePoints[packageName] || 0;
-      userPoints += pointsEarned;
-      savePoints();
-
-      // Actualizar UI
-      updateMembershipLocks();
-      updatePointsMessage();
-      updateProgressBar();
-
-      // Abrir modal de auto
-      openAutoModal(packageName);
-    });
+  btn.addEventListener('click', () => {
+    const packageName = btn.parentElement.querySelector('h3').textContent;
+    // Abrir modal de auto
+    openAutoModal(packageName);
   });
+});
+
 
   // ===== Membresías =====
   const modalName = document.getElementById("modalMembershipName");
