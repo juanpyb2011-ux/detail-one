@@ -304,6 +304,13 @@ footer{text-align:center;padding:30px;color:#888;}
 <!-- ================= MEMBRESÍAS (SIN CAMBIOS) ================= -->
 <section id="club">
 <div class="section-title"><span>MEMBRESÍAS</span><h2>Detail One Club</h2></div>
+  <p id="pointsMessage" style="text-align:center; margin-top:-30px; margin-bottom:40px; color:#c9a24d; font-weight:600;"></p>
+<div style="max-width:500px;margin:0 auto 50px auto;">
+  <div style="background:#222;border-radius:20px;overflow:hidden;height:18px;">
+    <div id="pointsBar" style="height:100%;width:0%;background:linear-gradient(90deg,#c9a24d,#f5d27a);transition:width .6s ease;"></div>
+  </div>
+</div>
+
 <div class="planes">
 
 <div class="plan">
@@ -390,6 +397,13 @@ footer{text-align:center;padding:30px;color:#888;}
 let selectedPackage = "";
 
 const packagePrices = {
+  const packagePoints = {
+  "Base Performance": 200,
+  "Cockpit Clean": 300,
+  "Sport Balance": 400,
+  "Interior Refit": 500
+};
+
   "Base Performance": { "Sedán":130, "Hatchback":130, "SUV":180, "Deportivo":200 },
   "Cockpit Clean": { "Sedán":200, "Hatchback":220, "SUV":250, "Deportivo":300 },
   "Sport Balance ⭐": { "Sedán":300, "Hatchback":300, "SUV":350, "Deportivo":400 },
@@ -420,10 +434,67 @@ document.querySelectorAll('.autoOption').forEach(btn => {
 
 document.querySelectorAll('.agendar-btn').forEach(btn => {
   const packageName = btn.parentElement.querySelector('h3').textContent;
-  btn.addEventListener('click', () => openAutoModal(packageName));
+
+  btn.addEventListener('click', () => {
+    // 👉 SUMAR PUNTOS SEGÚN EL PAQUETE
+    const pointsEarned = packagePoints[packageName] || 0;
+    userPoints += pointsEarned;
+    savePoints();
+    updateMembershipLocks();
+    updatePointsDisplay();
+    updatePointsMessage();
+    updateProgressBar();
+    function updateProgressBar() {
+  const bar = document.getElementById("pointsBar");
+
+  const tiers = [1000, 2000, 5000];
+  let nextTarget = tiers.find(t => userPoints < t) || tiers[tiers.length - 1];
+
+  let progress = (userPoints / nextTarget) * 100;
+  if (progress > 100) progress = 100;
+
+  bar.style.width = progress + "%";
+}
+
+    function updatePointsMessage() {
+  const messageEl = document.getElementById("pointsMessage");
+
+  const tiers = [
+    { name: "Pit Lane Basic", required: 1000 },
+    { name: "Sport Performance", required: 2000 },
+    { name: "Track Elite", required: 5000 }
+  ];
+
+  let nextTier = null;
+
+  for (let tier of tiers) {
+    if (userPoints < tier.required) {
+      nextTier = tier;
+      break;
+    }
+  }
+
+  if (nextTier) {
+    const missing = nextTier.required - userPoints;
+    messageEl.textContent = `Te faltan ${missing} OnePoints para desbloquear ${nextTier.name}`;
+  } else {
+    messageEl.textContent = "🏆 ¡Felicidades! Ya tienes todas las membresías desbloqueadas";
+  }
+}
+
+    updatePointsDisplay();
+
+    // 👉 ABRIR EL MODAL COMO SIEMPRE
+    openAutoModal(packageName);
+  });
+});
+
 });
   // ===== SISTEMA DE ONEPOINTS =====
-let userPoints = 0; // Cambia este número para probar niveles
+let userPoints = localStorage.getItem("onePoints")
+  ? parseInt(localStorage.getItem("onePoints"))
+  : 0;
+
 
 function updateMembershipLocks() {
   const memberships = document.querySelectorAll('.membership-card');
@@ -441,6 +512,10 @@ function updateMembershipLocks() {
 }
 
 updateMembershipLocks();
+  function savePoints() {
+  localStorage.setItem("onePoints", userPoints);
+}
+
 
 </script>
 
