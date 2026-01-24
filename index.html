@@ -120,6 +120,38 @@ footer{text-align:center;padding:30px;color:#888;}
   margin-bottom:8px;
   font-size:.9rem;
 }
+/* ===== MEMBRESÍAS BLOQUEADAS ===== */
+.locked {
+  position: relative;
+  filter: grayscale(1) brightness(.6);
+  pointer-events: none;
+}
+
+.locked::before {
+  content: "🔒 BLOQUEADA";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,.8);
+  color: #fff;
+  padding: 6px 10px;
+  font-size: .7rem;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.locked::after {
+  content: attr(data-required);
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: gold;
+  color: #000;
+  padding: 6px 10px;
+  font-size: .7rem;
+  border-radius: 8px;
+  font-weight: bold;
+}
 
 </style>
 </head>
@@ -275,7 +307,8 @@ footer{text-align:center;padding:30px;color:#888;}
 <div class="planes">
 
 <div class="plan">
-  <div class="membership-card basic-tier">
+  <div class="membership-card basic-tier locked" data-required="Requiere 1000 OnePoints">
+
 
     <div>
       <div class="membership-tier">MEMBERSHIP</div>
@@ -289,7 +322,8 @@ footer{text-align:center;padding:30px;color:#888;}
 
 
 <div class="plan featured">
-  <div class="membership-card performance-tier">
+  <div class="membership-card performance-tier locked" data-required="Requiere 2000 OnePoints">
+
 
     <div>
       <div class="membership-tier">PRIORITY MEMBER</div>
@@ -303,7 +337,8 @@ footer{text-align:center;padding:30px;color:#888;}
 
 
 <div class="plan">
-  <div class="membership-card elite-tier">
+  <div class="membership-card elite-tier locked" data-required="Requiere 5000 OnePoints">
+
 
     <div>
       <div class="membership-tier">ELITE MEMBER</div>
@@ -387,6 +422,26 @@ document.querySelectorAll('.agendar-btn').forEach(btn => {
   const packageName = btn.parentElement.querySelector('h3').textContent;
   btn.addEventListener('click', () => openAutoModal(packageName));
 });
+  // ===== SISTEMA DE ONEPOINTS =====
+let userPoints = 0; // Cambia este número para probar niveles
+
+function updateMembershipLocks() {
+  const memberships = document.querySelectorAll('.membership-card');
+
+  memberships.forEach(card => {
+    const requiredText = card.dataset.required;
+    const requiredPoints = parseInt(requiredText.match(/\d+/)[0]);
+
+    if (userPoints >= requiredPoints) {
+      card.classList.remove('locked');
+    } else {
+      card.classList.add('locked');
+    }
+  });
+}
+
+updateMembershipLocks();
+
 </script>
 
 </body>
