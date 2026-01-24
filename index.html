@@ -152,6 +152,40 @@ footer{text-align:center;padding:30px;color:#888;}
   border-radius: 8px;
   font-weight: bold;
 }
+/* ================= AJUSTES MÓVILES PARA MODALES Y CARRITO ================= */
+#autoModal,
+#membershipModal {
+  z-index: 9999;
+}
+
+#miniCart {
+  z-index: 9999;
+  max-width: 90%;
+  right: 5%;
+}
+
+/* Botones más grandes para touch */
+.autoOption,
+#checkoutCart,
+.agendar-btn,
+.buy,
+#closeModal,
+#closeMembershipModal,
+#modalWhatsAppBtn {
+  touch-action: manipulation;
+}
+
+/* Modales con scroll si pantalla pequeña */
+#autoModal > div,
+#membershipModal > div {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Ajuste para nav fijo y evitar superposición en móvil */
+body {
+  padding-top: 90px; /* más espacio si nav es grande */
+}
 
 </style>
 </head>
@@ -526,216 +560,104 @@ footer{text-align:center;padding:30px;color:#888;}
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+// Función auxiliar para agregar eventos táctiles y click
+function addClickTouch(el, fn){
+  el.addEventListener('click', fn);
+  el.addEventListener('touchstart', fn);
+}
 
-  // ===== Variables iniciales =====
-  let selectedPackage = "";
-  let cart = [];
+// BOTONES DE AGENDAR
+document.querySelectorAll('.agendar-btn').forEach(btn => {
+  addClickTouch(btn, () => {
+    const packageName = btn.parentElement.querySelector('h3').textContent;
 
-  const packagePrices = {
-    "Base Performance": { "Sedán":130, "Hatchback":130, "SUV":180, "Deportivo":200 },
-    "Cockpit Clean": { "Sedán":200, "Hatchback":220, "SUV":250, "Deportivo":300 },
-    "Sport Balance ⭐": { "Sedán":300, "Hatchback":300, "SUV":350, "Deportivo":400 },
-    "Interior Refit": { "Sedán":350, "Hatchback":320, "SUV":390, "Deportivo":449 },
-    "Gloss Line": { "Sedán":400, "Hatchback":400, "SUV":450, "Deportivo":500 },
-    "Track Spec": { "Sedán":500, "Hatchback":520, "SUV":600, "Deportivo":700 }
-  };
+    // Sumar OnePoints
+    const pointsEarned = packagePoints[packageName] || 0;
+    userPoints += pointsEarned;
+    savePoints();
 
-  const packagePoints = {
-    "Base Performance": 200,
-    "Cockpit Clean": 220,
-    "Sport Balance ⭐": 300,
-    "Interior Refit": 320,
-    "Gloss Line": 350,
-    "Track Spec": 450
-  };
+    // Actualizar UI
+    updateMembershipLocks();
+    updatePointsMessage();
+    updateProgressBar();
 
-  let userPoints = localStorage.getItem("onePoints") ? parseInt(localStorage.getItem("onePoints")) : 0;
+    // Abrir modal de auto
+    openAutoModal(packageName);
+  });
+});
 
-  function savePoints() {
-    localStorage.setItem("onePoints", userPoints);
-  }
-
-  // ===== Modal de tipo de auto =====
-  function openAutoModal(packageName) {
-    selectedPackage = packageName;
-    document.getElementById('selectedPackageName').textContent = packageName;
-    document.getElementById('autoModal').style.display = 'flex';
-  }
-
-  document.getElementById('closeModal').addEventListener('click', () => {
+// BOTONES DEL MODAL DE AUTO
+document.querySelectorAll('.autoOption').forEach(btn => {
+  addClickTouch(btn, () => {
+    const autoType = btn.dataset.type;
+    const price = packagePrices[selectedPackage][autoType];
+    const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
+    window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
     document.getElementById('autoModal').style.display = 'none';
   });
+});
 
-  document.querySelectorAll('.autoOption').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const autoType = btn.dataset.type;
-      const price = packagePrices[selectedPackage][autoType];
-      const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
-      window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
-      document.getElementById('autoModal').style.display = 'none';
-    });
-  });
+// CERRAR MODAL AUTO
+addClickTouch(document.getElementById('closeModal'), () => {
+  document.getElementById('autoModal').style.display = 'none';
+});
 
-  // ===== Botones Agendar ahora =====
-  document.querySelectorAll('.agendar-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const packageName = btn.parentElement.querySelector('h3').textContent;
-
-      // Sumar OnePoints
-      const pointsEarned = packagePoints[packageName] || 0;
-      userPoints += pointsEarned;
-      savePoints();
-
-      // Actualizar UI
-      updateMembershipLocks();
-      updatePointsMessage();
-      updateProgressBar();
-
-      // Abrir modal de auto
-      openAutoModal(packageName);
-    });
-  });
-
-  // ===== Membresías =====
-  const modalName = document.getElementById("modalMembershipName");
-  const modalBenefits = document.getElementById("modalMembershipBenefits");
-  const modalPrice = document.getElementById("modalMembershipPrice");
-  const modalWhatsAppBtn = document.getElementById("modalWhatsAppBtn");
-  const membershipModal = document.getElementById("membershipModal");
-  const closeMembershipModal = document.getElementById("closeMembershipModal");
-
-  function updateMembershipLocks() {
-    const memberships = document.querySelectorAll('.membership-card');
-    memberships.forEach(card => {
-      const requiredText = card.dataset.required;
-      const requiredPoints = parseInt(requiredText.match(/\d+/)[0]);
-      if (userPoints >= requiredPoints) {
-        card.classList.remove('locked');
-      } else {
-        card.classList.add('locked');
-      }
-    });
-  }
-
-  // Event delegation para membresías
-  document.querySelectorAll(".planes").forEach(container => {
-    container.addEventListener("click", (e) => {
-      const card = e.target.closest(".membership-card");
-      if(!card || card.classList.contains("locked")) return;
-
+// MEMBRESÍAS DESBLOQUEADAS
+document.querySelectorAll('.membership-card').forEach(card => {
+  addClickTouch(card, () => {
+    if (!card.classList.contains('locked')) {
+      // Mostrar modal con info
       modalName.textContent = card.querySelector('.membership-name').textContent;
       modalBenefits.textContent = card.querySelector('.membership-benefits').textContent;
       modalPrice.textContent = card.querySelector('.membership-price').textContent;
+
       modalWhatsAppBtn.href = "https://wa.me/522224290839?text=" + encodeURIComponent(
         "Hola, quiero conseguir la membresía " + modalName.textContent + " de Detail One Club."
       );
 
-      membershipModal.style.display = "flex";
-    });
-  });
-
-  closeMembershipModal.addEventListener('click', () => {
-    membershipModal.style.display = "none";
-  });
-
-  // ===== Mensaje y barra de progreso =====
-  function updatePointsMessage() {
-    const messageEl = document.getElementById("pointsMessage");
-    const tiers = [
-      { name: "Pit Lane Basic", required: 1000 },
-      { name: "Sport Performance", required: 2000 },
-      { name: "Track Elite", required: 5000 }
-    ];
-
-    const nextTier = tiers.find(t => userPoints < t.required);
-    if(nextTier){
-      const missing = nextTier.required - userPoints;
-      messageEl.textContent = `Te faltan ${missing} OnePoints para desbloquear ${nextTier.name}`;
-    } else {
-      messageEl.textContent = "🏆 ¡Todas las membresías desbloqueadas!";
+      document.getElementById("membershipModal").style.display = "flex";
     }
-  }
+  });
+});
 
-  function updateProgressBar() {
-    const bar = document.getElementById("pointsBar");
-    const targets = [1000, 2000, 5000];
-    let nextTarget = targets.find(t => userPoints < t) || targets[targets.length - 1];
-    let progress = (userPoints / nextTarget) * 100;
-    if(progress > 100) progress = 100;
-    bar.style.width = progress + "%";
-  }
+// CERRAR MODAL MEMBRESÍAS
+addClickTouch(closeMembershipModal, () => {
+  document.getElementById("membershipModal").style.display = "none";
+});
 
-  updateMembershipLocks();
-  updatePointsMessage();
-  updateProgressBar();
-
-  // ===== Mini Carrito =====
-  const cartDiv = document.getElementById("cartItems");
-  const totalSpan = document.getElementById("cartTotal");
-
-  function updateCartDisplay(){
-    cartDiv.innerHTML = "";
-    let total = 0;
-
-    cart.forEach((item,index)=>{
-      const itemDiv = document.createElement("div");
-      itemDiv.style.marginBottom = "6px";
-      itemDiv.textContent = `${item.name} x${item.qty} - $${item.price*item.qty} MXN`;
-
-      const removeBtn = document.createElement("button");
-      removeBtn.textContent = "❌";
-      removeBtn.style.marginLeft = "8px";
-      removeBtn.style.border = "none";
-      removeBtn.style.background = "transparent";
-      removeBtn.style.color = "var(--gold)";
-      removeBtn.style.cursor = "pointer";
-      removeBtn.addEventListener("click", () => {
-        cart.splice(index,1);
-        updateCartDisplay();
-      });
-
-      itemDiv.appendChild(removeBtn);
-      cartDiv.appendChild(itemDiv);
-
-      total += item.price*item.qty;
-    });
-
-    totalSpan.textContent = total;
-    document.getElementById("miniCart").style.display = cart.length > 0 ? "block" : "none";
-  }
-
-  // Event delegation para comprar productos
-  document.querySelector(".productos").addEventListener("click", (e)=>{
-    if(!e.target.classList.contains("buy")) return;
+// MINI CARRITO
+document.querySelectorAll('.buy').forEach(btn => {
+  addClickTouch(btn, (e) => {
     e.preventDefault();
-
-    const btn = e.target;
     const card = btn.closest(".card");
     const name = card.querySelector("h3").textContent;
     const price = parseInt(card.querySelector(".price").textContent.replace(/\D/g,''));
 
-    const existing = cart.find(i=>i.name===name);
-    if(existing){ existing.qty +=1; } else { cart.push({name,price,qty:1}); }
+    const existing = cart.find(i => i.name === name);
+    if(existing){
+      existing.qty +=1;
+    } else {
+      cart.push({name, price, qty:1});
+    }
+
     updateCartDisplay();
   });
+});
 
-  // Checkout WhatsApp
-  document.getElementById("checkoutCart").addEventListener('click', () => {
-    if(cart.length === 0) return;
+addClickTouch(document.getElementById("checkoutCart"), () => {
+  if(cart.length === 0) return;
 
-    let message = "Hola, quiero comprar los siguientes productos de Detail One:%0A%0A";
-    cart.forEach(item => {
-      message += `${item.name} x${item.qty} - $${item.price*item.qty} MXN%0A`;
-    });
-
-    const total = cart.reduce((sum,item)=>sum+item.price*item.qty,0);
-    message += `%0ATotal: $${total} MXN`;
-
-    window.open(`https://wa.me/522224290839?text=${message}`,'_blank');
+  let message = "Hola, quiero comprar los siguientes productos de Detail One:%0A%0A";
+  cart.forEach(item => {
+    message += `${item.name} x${item.qty} - $${item.price*item.qty} MXN%0A`;
   });
 
+  const total = cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+  message += `%0ATotal: $${total} MXN`;
+
+  window.open(`https://wa.me/522224290839?text=${message}`, '_blank');
 });
+
 </script>
 
 
