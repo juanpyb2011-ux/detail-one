@@ -572,20 +572,25 @@ document.addEventListener("DOMContentLoaded", () => {
   btn.addEventListener('click', () => {
     const autoType = btn.dataset.type;
     const price = packagePrices[selectedPackage][autoType];
+    const pointsEarned = packagePoints[selectedPackage] || 0;
 
     const confirmSend = confirm(
-      `Vas a agendar:\n\nPaquete: ${selectedPackage}\nTipo de auto: ${autoType}\nPrecio: $${price} MXN\n\n¿Deseas continuar a WhatsApp para enviarlo?`
+      `Vas a agendar:\n\n` +
+      `Paquete: ${selectedPackage}\n` +
+      `Tipo de auto: ${autoType}\n` +
+      `Precio: $${price} MXN\n` +
+      `OnePoints que ganarás: +${pointsEarned}\n\n` +
+      `¿Deseas continuar a WhatsApp para enviarlo?`
     );
 
-    if (!confirmSend) return; // ❌ Si cancela, no pasa nada
+    if (!confirmSend) return;
 
     const message = `Hola, quiero agendar el paquete ${selectedPackage} para un ${autoType}. Precio: $${price} MXN.`;
 
     // Abrir WhatsApp
     window.open('https://wa.me/522224290839?text=' + encodeURIComponent(message), '_blank');
 
-    // ✅ Sumar puntos SOLO después de confirmar
-    const pointsEarned = packagePoints[selectedPackage] || 0;
+    // Sumar puntos SOLO después de confirmar
     userPoints += pointsEarned;
     savePoints();
     updateMembershipLocks();
@@ -595,6 +600,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('autoModal').style.display = 'none';
   });
 });
+
 
 
 
