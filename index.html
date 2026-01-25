@@ -168,6 +168,43 @@ footer{text-align:center;padding:30px;color:#888;}
   align-items: center;
   gap: 6px;
 }
+/* ===== RECOMPENSAS CANJEABLES ===== */
+.rewardCard{
+  background:linear-gradient(180deg,#151515,#0e0e0e);
+  border-radius:18px;
+  padding:22px;
+  border:1px solid #222;
+  text-align:center;
+  color:#fff;
+}
+
+.rewardCost{
+  color:var(--gold);
+  font-weight:700;
+  margin:10px 0;
+}
+
+.redeemBtn{
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  background:linear-gradient(135deg,var(--gold),#f5d27a);
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.redeemBtn:disabled{
+  background:#555;
+  color:#aaa;
+  cursor:not-allowed;
+}
+
+.premiumReward{
+  border:2px solid gold;
+  box-shadow:0 0 18px rgba(255,215,0,.5);
+}
 
 </style>
 </head>
@@ -288,6 +325,17 @@ footer{text-align:center;padding:30px;color:#888;}
     </ul>
   </div>
 
+</section>
+<!-- ================= RECOMPENSAS CANJEABLES ================= -->
+<section id="recompensas">
+  <div class="section-title">
+    <span>RECOMPENSAS</span>
+    <h2>Canjea tus OnePoints</h2>
+  </div>
+
+  <div class="productos" id="rewardsContainer">
+    <!-- Se llenan con JS -->
+  </div>
 </section>
 
 
@@ -573,6 +621,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let userPoints = localStorage.getItem("onePoints") ? parseInt(localStorage.getItem("onePoints")) : 0;
+// ===== RECOMPENSAS CANJEABLES =====
+const rewards = [
+  { name: "Aromatizante premium", cost: 300 },
+  { name: "Limpieza de cristales", cost: 600 },
+  { name: "Descuento $50 MXN", cost: 900 },
+  { name: "Lavado exterior básico", cost: 1500 },
+  { name: "🏎️ 2 Pases para Go Karts", cost: 7000 }
+];
 
   function savePoints() {
     localStorage.setItem("onePoints", userPoints);
@@ -710,6 +766,8 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePointsMessage();
   updateProgressBar();
   updateFloatingPoints();
+  renderRewards();
+
   
   function updateFloatingPoints(){
   const el = document.getElementById("floatingPointsValue");
@@ -717,6 +775,30 @@ document.addEventListener("DOMContentLoaded", () => {
     el.textContent = userPoints;
   }
 }
+  function renderRewards(){
+  const container = document.getElementById("rewardsContainer");
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  rewards.forEach(reward => {
+    const div = document.createElement("div");
+    div.className = reward.cost >= 7000 ? "rewardCard premiumReward" : "rewardCard";
+
+    const canRedeem = userPoints >= reward.cost;
+
+    div.innerHTML = `
+      <h3>${reward.name}</h3>
+      <div class="rewardCost">${reward.cost} OnePoints</div>
+      <button class="redeemBtn" ${canRedeem ? "" : "disabled"} data-cost="${reward.cost}" data-name="${reward.name}">
+        ${canRedeem ? "Canjear recompensa" : "Te faltan " + (reward.cost - userPoints) + " pts"}
+      </button>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
 
 
   // ===== Mini Carrito =====
@@ -782,6 +864,30 @@ document.addEventListener("DOMContentLoaded", () => {
     message += `%0ATotal: $${total} MXN`;
 
     window.open(`https://wa.me/522224290839?text=${message}`,'_blank');
+    // ===== CANJEAR RECOMPENSAS =====
+document.addEventListener("click", function(e){
+  if(!e.target.classList.contains("redeemBtn")) return;
+
+  const cost = parseInt(e.target.dataset.cost);
+  const name = e.target.dataset.name;
+
+  if(userPoints < cost) return;
+
+  const confirmRedeem = confirm(`¿Quieres canjear "${name}" por ${cost} OnePoints?`);
+  if(!confirmRedeem) return;
+
+  userPoints -= cost;
+  savePoints();
+  updateFloatingPoints();
+  updateMembershipLocks();
+  updatePointsMessage();
+  updateProgressBar();
+  renderRewards();
+
+  const msg = `Hola, quiero canjear mi recompensa: ${name} usando mis OnePoints.`;
+  window.open("https://wa.me/522224290839?text=" + encodeURIComponent(msg), "_blank");
+});
+
   });
 
 });
