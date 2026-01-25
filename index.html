@@ -152,10 +152,31 @@ footer{text-align:center;padding:30px;color:#888;}
   border-radius: 8px;
   font-weight: bold;
 }
+#floatingPoints{
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  background: linear-gradient(135deg,#c9a24d,#f5d27a);
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .9rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
 </style>
 </head>
 <body>
+  <!-- CONTADOR ONEPOINTS FIJO -->
+<div id="floatingPoints">
+  ⭐ <span id="floatingPointsValue">0</span> OnePoints
+</div>
+
 
 <nav>
 <a href="#servicios">Paquetes</a>
@@ -596,6 +617,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMembershipLocks();
     updatePointsMessage();
     updateProgressBar();
+    updateFloatingPoints();
+
 
     document.getElementById('autoModal').style.display = 'none';
   });
@@ -686,6 +709,13 @@ document.addEventListener("DOMContentLoaded", () => {
   updateMembershipLocks();
   updatePointsMessage();
   updateProgressBar();
+  function updateFloatingPoints(){
+  const el = document.getElementById("floatingPointsValue");
+  if(el){
+    el.textContent = userPoints;
+  }
+}
+
 
   // ===== Mini Carrito =====
   const cartDiv = document.getElementById("cartItems");
