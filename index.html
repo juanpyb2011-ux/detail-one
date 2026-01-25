@@ -798,6 +798,29 @@ const rewards = [
     container.appendChild(div);
   });
 }
+// ===== CANJEAR RECOMPENSAS =====
+document.addEventListener("click", function(e){
+  if(!e.target.classList.contains("redeemBtn")) return;
+
+  const cost = parseInt(e.target.dataset.cost);
+  const name = e.target.dataset.name;
+
+  if(userPoints < cost) return;
+
+  const confirmRedeem = confirm(`¿Quieres canjear "${name}" por ${cost} OnePoints?`);
+  if(!confirmRedeem) return;
+
+  userPoints -= cost;
+  savePoints();
+  updateFloatingPoints();
+  updateMembershipLocks();
+  updatePointsMessage();
+  updateProgressBar();
+  renderRewards();
+
+  const msg = `Hola, quiero canjear mi recompensa: ${name} usando mis OnePoints.`;
+  window.open("https://wa.me/522224290839?text=" + encodeURIComponent(msg), "_blank");
+});
 
 
 
@@ -864,29 +887,6 @@ const rewards = [
     message += `%0ATotal: $${total} MXN`;
 
     window.open(`https://wa.me/522224290839?text=${message}`,'_blank');
-    // ===== CANJEAR RECOMPENSAS =====
-document.addEventListener("click", function(e){
-  if(!e.target.classList.contains("redeemBtn")) return;
-
-  const cost = parseInt(e.target.dataset.cost);
-  const name = e.target.dataset.name;
-
-  if(userPoints < cost) return;
-
-  const confirmRedeem = confirm(`¿Quieres canjear "${name}" por ${cost} OnePoints?`);
-  if(!confirmRedeem) return;
-
-  userPoints -= cost;
-  savePoints();
-  updateFloatingPoints();
-  updateMembershipLocks();
-  updatePointsMessage();
-  updateProgressBar();
-  renderRewards();
-
-  const msg = `Hola, quiero canjear mi recompensa: ${name} usando mis OnePoints.`;
-  window.open("https://wa.me/522224290839?text=" + encodeURIComponent(msg), "_blank");
-});
 
   });
 
